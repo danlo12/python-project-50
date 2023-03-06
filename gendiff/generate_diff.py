@@ -19,13 +19,12 @@ def generate_diff(file_path1, file_path2):
             continue
         else:
             result["+ " + key2] = file2[key2]
-    final = "\n{"
+    final = "{"
     for str_result in result:
-        if result[str_result] == True or result[str_result] == False:
+        if result[str_result] is True or result[str_result] is False:
             result[str_result] = str(result[str_result]).lower()
         else:
             result[str_result] = str(result[str_result])
         final = final + "\n" + str(str_result) + ': ' + result[str_result]
     final = final + "\n}"
     return final
-
