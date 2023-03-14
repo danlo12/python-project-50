@@ -1,5 +1,6 @@
 import json
 
+
 def mk_str(result):
     final = "{"
     for str_result in result:
@@ -10,6 +11,8 @@ def mk_str(result):
         final = final + "\n" + str(str_result) + ': ' + result[str_result]
     final = final + "\n}"
     return final
+
+
 def generate_diff(file_path1, file_path2):
     file1 = dict(sorted((json.load(open(file_path1))).items()))
     file2 = dict(sorted((json.load(open(file_path2))).items()))
