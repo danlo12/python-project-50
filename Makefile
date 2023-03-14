@@ -7,4 +7,4 @@ install:
 	poetry run pip install pytest
 	poetry add pytest
 coverage:
-	/path/to/poetry/env/bin/pytest --cov=gendiff tests/
+	pytest --cov=gendiff tests/
