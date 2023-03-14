@@ -4,5 +4,6 @@ pytest:
 	poetry run pytest
 install:
 	poetry install
+	poetry run pip install pytest
 coverage:
 	pytest --cov=gendiff tests/
