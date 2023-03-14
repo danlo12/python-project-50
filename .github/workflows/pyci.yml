@@ -1,4 +1,12 @@
 jobs:
+
+  on:
+    push:
+      branches:
+        - '**'
+      tags:
+        - '**'
+
   test:
     runs-on: ubuntu-latest
     steps:
