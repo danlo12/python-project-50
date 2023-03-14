@@ -1,18 +1,19 @@
+name: hexlet-check
+
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '**'
+
 jobs:
-
-  on:
-    push:
-      branches:
-        - '**'
-      tags:
-        - '**'
-
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Install dependencies
-        run: npm install
-      - name: Run tests
-        run: npm test
+      - uses: actions/checkout@v3
+
+      - name: test
+        run: poetry run pytest
+        with:
+          hexlet-id: ${{ secrets.HEXLET_ID }}
