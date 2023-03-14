@@ -15,7 +15,5 @@ jobs:
 
       - name: Hexlet project check
         uses: hexlet/project-action@release
-      - name: Run tests
-        run: poetry run pytest
         with:
           hexlet-id: ${{ secrets.HEXLET_ID }}
