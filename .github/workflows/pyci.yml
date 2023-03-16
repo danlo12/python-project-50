@@ -5,27 +5,31 @@ on: push
 jobs:
   pytest:
 
+
     runs-on: ubuntu-latest
+
 
     steps:
       - uses: actions/checkout@master
-      - name: set up python
+      - name: set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
       - name: install poetry
         uses: snok/install-poetry@master
-      - name: install dependencies
+      - name: Install dependencies
         run: make install
-      - name: run linter and tests
-        run:  |
-          make lint
-          make pytest
-      - name: test coverage
-        uses: paambaati/codeclimate-action@v3.2.0
+      - name: install flake8
+        run: poetry add flake8
+      - name: run lint
+        run: make lint
+      - name: run tests
+        run: make pytest
+      - name: testing coverage
         if: github.ref_name == 'main'
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        uses: paambaati/codeclimate-action@v3.2.0
         with:
           coverageCommand: make coverage
           debug: true
