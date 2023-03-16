@@ -3,6 +3,7 @@ lint:
 pytest:
 	poetry run pytest
 install:
+	pip install pytest
 	poetry install
 	poetry run pip install pytest
 	poetry add pytest
