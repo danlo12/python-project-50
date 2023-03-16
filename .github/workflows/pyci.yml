@@ -1,35 +1,35 @@
-name: test coverage
+name: pytest
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: push
 
 jobs:
-  build:
+  pytest:
+
+
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [ 3.9 ]
+
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@master
+      - name: set up Python
+        uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: '3.10'
+      - name: install poetry
+        uses: snok/install-poetry@master
       - name: Install dependencies
-        run: |
-          pip install poetry
-          make install
-      - name: Run linter and pytest
-        run: |
-          make lint
-          make test
-      - name: Test code coverage
-        uses: paambaati/codeclimate-action@v3.0.0
+        run: make install
+      - name: install flake8
+        run: poetry add flake8
+      - name: run lint
+        run: make lint
+      - name: run tests
+        run: make pytest
+      - name: testing coverage
+        if: github.ref_name == 'main'
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        uses: paambaati/codeclimate-action@v3.2.0
         with:
-          coverageCommand: make test-coverage
+          coverageCommand: make coverage
           debug: true
