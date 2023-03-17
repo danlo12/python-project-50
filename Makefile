@@ -7,4 +7,4 @@ install:
 	poetry add flake8
 	poetry add  pytest-cov
 test-cov:
-	pytest --cov=gendiff tests/
+	poetry run pytest --cov=coverage_demo tests/ --cov-report xml
