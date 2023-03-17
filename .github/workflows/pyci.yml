@@ -1,34 +1,36 @@
 name: pytest
 
-on: push
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '**'
 
 jobs:
-  pytest:
-
-
+  build:
     runs-on: ubuntu-latest
-
-
     steps:
       - uses: actions/checkout@master
-      - name: set up Python
+      - name: set up Python 3.10
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
       - name: install poetry
-        uses: snok/install-poetry@master
+        run: pip install poetry
       - name: Install dependencies
         run: make install
-      - name: install flake8
-        run: poetry add flake8
       - name: run lint
         run: make lint
-      - name: run tests
-        run: make pytest
-      - name: testing coverage
-        if: github.ref_name == 'main'
+      - name: Create Reporter
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter before-build
+      - name: test
+        run: make test-cov
         env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          GITHAB_TOKEN: ${{ secrets. }}
         uses: paambaati/codeclimate-action@v3.2.0
         with:
           coverageCommand: make coverage

@@ -1,13 +1,11 @@
 lint:
 	poetry run flake8 gendiff
-pytest:
+test:
 	poetry run pytest
 install:
-	pip install pytest-cov
-	pip install pytest
-	pip install coverage
 	poetry install
-	poetry run pip install pytest
-	poetry add pytest
-coverage:
+	poetry install pytest-cov
+	poetry install coverage
+	poetry add flake8
+test-cov:
 	pytest --cov=gendiff tests/
