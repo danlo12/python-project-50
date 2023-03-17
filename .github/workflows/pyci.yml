@@ -34,4 +34,5 @@ jobs:
       - name: Sending Repo
         env:
           GITHAB_TOKEN: ${{ secrets.TEST_REPORTER_ID }}
-        run: ./cc-test-reporter after-build --coverage-input-type=coverage.py -r $CC_TEST_REPORTER_ID --exit-code $?
+        run:  |
+         ./cc-test-reporter after-build  -r $CC_TEST_REPORTER_ID
