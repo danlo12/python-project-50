@@ -1,5 +1,4 @@
-import json
-
+from parser import definition_form
 
 def mk_str(result):
     final = "{"
@@ -14,8 +13,8 @@ def mk_str(result):
 
 
 def generate_diff(file_path1, file_path2):
-    file1 = dict(sorted((json.load(open(file_path1))).items()))
-    file2 = dict(sorted((json.load(open(file_path2))).items()))
+    file1 = definition_form(file_path1)
+    file2 = definition_form(file_path2)
     result = dict()
     for key1 in file1:
         if key1 in file2:
