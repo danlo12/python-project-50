@@ -33,6 +33,6 @@ jobs:
         run: make test-cov
       - name: Sending Repo
         env:
-          GITHAB_TOKEN: ${{ secrets.TEST_REPORTER_ID }}
+          GITHAB_TOKEN: ${{ secrets.CC_TEST_REPORTER_ID }}
         run:  |
-         ./cc-test-reporter after-build -r $CC_TEST_REPORTER_ID
+         ./cc-test-reporter after-build -r $GITHAB_TOKEN
