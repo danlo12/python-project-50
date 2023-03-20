@@ -1,4 +1,4 @@
-from parser import definition_form
+from gendiff.parser import definition_form
 
 def mk_str(result):
     final = "{"
@@ -12,7 +12,7 @@ def mk_str(result):
     return final
 
 
-def generate_diff(file_path1, file_path2):
+def generate_result(file_path1, file_path2):
     file1 = definition_form(file_path1)
     file2 = definition_form(file_path2)
     result = dict()

@@ -1,5 +1,7 @@
 import json
 import yaml
+
+
 def definition_form(file_path):
     if file_path[-4:] == "json":
         return dict(sorted((json.load(open(file_path))).items()))
