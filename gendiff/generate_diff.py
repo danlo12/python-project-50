@@ -1,5 +1,6 @@
 from gendiff.parser import definition_form
 
+
 def mk_str(result):
     final = "{"
     for str_result in result:
