@@ -1,4 +1,4 @@
-from gendiff import parg
+from gendiff import parser
 
 file1 = {
   "host": "hexlet.io",
