@@ -1,5 +1,5 @@
 from gendiff.parser import definition_form
-
+from gendiff.Gendiff import recdif
 
 def mk_str(result):
     final = "{"
@@ -13,9 +13,7 @@ def mk_str(result):
     return final
 
 
-def generate_result(file_path1, file_path2):
-    file1 = definition_form(file_path1)
-    file2 = definition_form(file_path2)
+def generate_diff(file1, file2,):
     result = dict()
     for key1 in file1:
         if key1 in file2:
@@ -31,4 +29,10 @@ def generate_result(file_path1, file_path2):
             continue
         else:
             result["+ " + key2] = file2[key2]
-    return mk_str(result)
+    return result
+
+
+def return_result(file_path1, file_path2):
+    file1 = definition_form(file_path1)
+    file2 = definition_form(file_path2)
+    return mk_str(recdif(file1, file2))
