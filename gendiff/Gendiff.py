@@ -1,4 +1,4 @@
-def mk_str(result):
+def mk_str(result, lvl=2):
     final = "{"
     for str_result in result:
         if result[str_result] is True or result[str_result] is False:
@@ -6,41 +6,47 @@ def mk_str(result):
         else:
             result[str_result] = str(result[str_result])
         final = final + "\n" + str(str_result) + ': ' + result[str_result]
-    final = final + "\n}"
+    final = final + "\n" + (" " * lvl) + "}"
     return final
 
 
-def recdif(file1, file2, lvl=2):
+def generate(file1, file2, lvl=2):
     result = dict()
+    common = list()
+    n_common = list()
     for key1 in file1:
-        if type(file1) is str:
-           return result
-        if type(file1[key1]) is dict:
-            if key1 in file2 and isinstance(file2[key1], dict):
-                result[(" " * lvl) + "  " + key1] = mk_str(recdif(file1[key1], file2[key1], lvl * 2))
-            else:
-                result[(" " * lvl) + "- " + key1] = mk_str(recdif(file1[key1],file1[key1],lvl * 2))
+        if key1 in file2:
+            common.append(key1)
         else:
-            if key1 in file2:
-                if file1[key1] == file2[key1]:
-                    result[(" " * lvl) + "  " + key1] = file1[key1]
-                else:
-                    result[(" " * lvl) + "- " + key1] = file1[key1]
-                    result[(" " * lvl) + "+ " + key1] = file2[key1]
-            else:
-                result[(" " * lvl) + "- " + key1] = file1[key1]
+            n_common.append(key1)
     for key2 in file2:
-        if type(file2) is str:
-            return result
-        if type(file2[key2]) is dict:
-            if key2 in file1 and isinstance(file1[key2], dict):
-                continue
-            else:
-                result[(" " * lvl) + "+ " + key2] = mk_str(recdif(file2[key2], file2[key2], lvl * 2))
+        if key2 in file1:
+            continue
         else:
-            for key2 in file2:
-                if key2 in file1:
-                    continue
-                else:
-                    result[(" " * lvl) + "+ " + key2] = file2[key2]
+            n_common.append(key2)
+    for key_all in common:
+        if type(file1[key_all]) is dict and type(file2[key_all]) is dict:
+            result[(" " * lvl) + "  " + key_all] = mk_str(generate(file1[key_all], file2[key_all], lvl + 4), lvl + 2)
+        elif type(file1[key_all]) is dict and type(file2[key_all]) is not dict:
+            result[(" " * lvl) + "- " + key_all] = mk_str(generate(file1[key_all], file1[key_all], lvl + 4), lvl + 2)
+            result[(" " * lvl) + "+ " + key_all] = file2[key_all]
+        elif type(file1[key_all]) is not dict and type(file2[key_all]) is dict:
+            result[(" " * lvl) + "- " + key_all] = file1[key_all]
+            result[(" " * lvl) + "+ " + key_all] = mk_str(generate(file2[key_all], file2[key_all], lvl + 4), lvl + 2)
+        elif file1[key_all] != file2[key_all]:
+            result[(" " * lvl) + "- " + key_all] = file1[key_all]
+            result[(" " * lvl) + "+ " + key_all] = file2[key_all]
+        else:
+            result[(" " * lvl) + "  " + key_all] = file1[key_all]
+    for key_nall in n_common:
+        if key_nall in file1:
+            if type(file1[key_nall]) is dict:
+                result[(" " * lvl) + "- " + key_nall] = mk_str(generate(file1[key_nall], file1[key_nall], lvl + 4), lvl + 2)
+            else:
+                result[(" " * lvl) + "- " + key_nall] = file1[key_nall]
+        elif key_nall in file2:
+            if type(file2[key_nall]) is dict:
+                result[(" " * lvl) + "+ " + key_nall] = mk_str(generate(file2[key_nall], file2[key_nall], lvl + 4), lvl + 2)
+            else:
+                result[(" " * lvl) + "+ " + key_nall] = file2[key_nall]
     return result
