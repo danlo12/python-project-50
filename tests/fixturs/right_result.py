@@ -11,5 +11,4 @@ file = {
 
 
 def right_one():
-    print(generate_diff.mk_str(file))
-    return generate_diff.mk_str(file)
+    return generate_diff.stulish(file)

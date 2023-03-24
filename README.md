@@ -8,3 +8,6 @@ Comparison of json format files
 
 Comparison of yaml and yml format files
 <a href="https://asciinema.org/a/xo67PY7mduUPxrXSwdlNmqx4E" target="_blank"><img src="https://asciinema.org/a/xo67PY7mduUPxrXSwdlNmqx4E.svg" /></a>
+
+Example of executing a function with recursion
+<a href="https://asciinema.org/a/Cgt9FMJqJN24VZ10aJ4EoiYzI" target="_blank"><img src="https://asciinema.org/a/Cgt9FMJqJN24VZ10aJ4EoiYzI.svg" /></a>

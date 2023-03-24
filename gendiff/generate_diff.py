@@ -1,7 +1,7 @@
 from gendiff.parser import definition_form
 
 
-def mk_str(result, lvl=2):
+def stulish(result, lvl=2):
     final = "{"
     for str_result in result:
         if result[str_result] is True or result[str_result] is False:
@@ -31,13 +31,13 @@ def generate(file1, file2, lvl=2):
             n_common.append(key2)
     for key_all in common:
         if type(file1[key_all]) is dict and type(file2[key_all]) is dict:
-            result[(" " * lvl) + "  " + key_all] = mk_str(generate(file1[key_all], file2[key_all], lvl + 4), lvl + 2)
+            result[(" " * lvl) + "  " + key_all] = stulish(generate(file1[key_all], file2[key_all], lvl + 4), lvl + 2)
         elif type(file1[key_all]) is dict and type(file2[key_all]) is not dict:
-            result[(" " * lvl) + "- " + key_all] = mk_str(generate(file1[key_all], file1[key_all], lvl + 4), lvl + 2)
+            result[(" " * lvl) + "- " + key_all] = stulish(generate(file1[key_all], file1[key_all], lvl + 4), lvl + 2)
             result[(" " * lvl) + "+ " + key_all] = file2[key_all]
         elif type(file1[key_all]) is not dict and type(file2[key_all]) is dict:
             result[(" " * lvl) + "- " + key_all] = file1[key_all]
-            result[(" " * lvl) + "+ " + key_all] = mk_str(generate(file2[key_all], file2[key_all], lvl + 4), lvl + 2)
+            result[(" " * lvl) + "+ " + key_all] = stulish(generate(file2[key_all], file2[key_all], lvl + 4), lvl + 2)
         elif file1[key_all] != file2[key_all]:
             result[(" " * lvl) + "- " + key_all] = file1[key_all]
             result[(" " * lvl) + "+ " + key_all] = file2[key_all]
@@ -46,20 +46,21 @@ def generate(file1, file2, lvl=2):
     for key_nall in n_common:
         if key_nall in file1:
             if type(file1[key_nall]) is dict:
-                result[(" " * lvl) + "- " + key_nall] = mk_str(generate(file1[key_nall],
+                result[(" " * lvl) + "- " + key_nall] = stulish(generate(file1[key_nall],
                                                                         file1[key_nall], lvl + 4), lvl + 2)
             else:
                 result[(" " * lvl) + "- " + key_nall] = file1[key_nall]
         elif key_nall in file2:
             if type(file2[key_nall]) is dict:
-                result[(" " * lvl) + "+ " + key_nall] = mk_str(generate(file2[key_nall],
+                result[(" " * lvl) + "+ " + key_nall] = stulish(generate(file2[key_nall],
                                                                         file2[key_nall], lvl + 4), lvl + 2)
             else:
                 result[(" " * lvl) + "+ " + key_nall] = file2[key_nall]
     return result
 
 
-def return_result(file_path1, file_path2):
+def return_result(file_path1, file_path2,formater="stylish"):
     file1 = definition_form(file_path1)
     file2 = definition_form(file_path2)
-    return mk_str(generate(file1, file2))
+    if formater == "stylish":
+        return stulish(generate(file1, file2))
