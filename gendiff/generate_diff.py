@@ -36,7 +36,7 @@ def generate(file1, file2, lvl=2):
     common, not_common = generate_key_lists(file1, file2)[0], generate_key_lists(file1, file2)[1]
     for key_common in common:
         new_key1 = (" " * lvl) + "- " + key_common
-        new_key2 =(" " * lvl) + "+ " + key_common
+        new_key2 = (" " * lvl) + "+ " + key_common
         new_key_all = (" " * lvl) + "  " + key_common
         if type(file1[key_common]) is dict and type(file2[key_common]) is dict:
             result[new_key_all] = stulish(generate(file1[key_common], file2[key_common], lvl + 4), lvl + 2)
