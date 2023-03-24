@@ -33,34 +33,37 @@ def generate_key_lists(file1, file2,):
 
 def generate(file1, file2, lvl=2):
     result = dict()
-    common, n_common = generate_key_lists(file1, file2)[0], generate_key_lists(file1, file2)[1]
-    for key_all in common:
-        if type(file1[key_all]) is dict and type(file2[key_all]) is dict:
-            result[(" " * lvl) + "  " + key_all] = stulish(generate(file1[key_all], file2[key_all], lvl + 4), lvl + 2)
-        elif type(file1[key_all]) is dict and type(file2[key_all]) is not dict:
-            result[(" " * lvl) + "- " + key_all] = stulish(generate(file1[key_all], file1[key_all], lvl + 4), lvl + 2)
-            result[(" " * lvl) + "+ " + key_all] = file2[key_all]
-        elif type(file1[key_all]) is not dict and type(file2[key_all]) is dict:
-            result[(" " * lvl) + "- " + key_all] = file1[key_all]
-            result[(" " * lvl) + "+ " + key_all] = stulish(generate(file2[key_all], file2[key_all], lvl + 4), lvl + 2)
-        elif file1[key_all] != file2[key_all]:
-            result[(" " * lvl) + "- " + key_all] = file1[key_all]
-            result[(" " * lvl) + "+ " + key_all] = file2[key_all]
+    common, not_common = generate_key_lists(file1, file2)[0], generate_key_lists(file1, file2)[1]
+    for key_common in common:
+        new_key1 = (" " * lvl) + "- " + key_common
+        new_key2 =(" " * lvl) + "+ " + key_common
+        new_key_all = (" " * lvl) + "  " + key_common
+        if type(file1[key_common]) is dict and type(file2[key_common]) is dict:
+            result[new_key_all] = stulish(generate(file1[key_common], file2[key_common], lvl + 4), lvl + 2)
+        elif type(file1[key_common]) is dict and type(file2[key_common]) is not dict:
+            result[new_key1] = stulish(generate(file1[key_common], file1[key_common], lvl + 4), lvl + 2)
+            result[new_key2] = file2[key_common]
+        elif type(file1[key_common]) is not dict and type(file2[key_common]) is dict:
+            result[new_key1] = file1[key_common]
+            result[new_key2] = stulish(generate(file2[key_common], file2[key_common], lvl + 4), lvl + 2)
+        elif file1[key_common] != file2[key_common]:
+            result[new_key1] = file1[key_common]
+            result[new_key2] = file2[key_common]
         else:
-            result[(" " * lvl) + "  " + key_all] = file1[key_all]
-    for key_nall in n_common:
-        if key_nall in file1:
-            new_key1 = (" " * lvl) + "- " + key_nall
-            if type(file1[key_nall]) is dict:
-                result[new_key1] = stulish(generate(file1[key_nall], file1[key_nall], lvl + 4), lvl + 2)
+            result[new_key_all] = file1[key_common]
+    for key_not_common in not_common:
+        if key_not_common in file1:
+            new_key1 = (" " * lvl) + "- " + key_not_common
+            if type(file1[key_not_common]) is dict:
+                result[new_key1] = stulish(generate(file1[key_not_common], file1[key_not_common], lvl + 4), lvl + 2)
             else:
-                result[new_key1] = file1[key_nall]
-        elif key_nall in file2:
-            new_key2 = (" " * lvl) + "+ " + key_nall
-            if type(file2[key_nall]) is dict:
-                result[new_key2] = stulish(generate(file2[key_nall], file2[key_nall], lvl + 4), lvl + 2)
+                result[new_key1] = file1[key_not_common]
+        elif key_not_common in file2:
+            new_key2 = (" " * lvl) + "+ " + key_not_common
+            if type(file2[key_not_common]) is dict:
+                result[new_key2] = stulish(generate(file2[key_not_common], file2[key_not_common], lvl + 4), lvl + 2)
             else:
-                result[new_key2] = file2[key_nall]
+                result[new_key2] = file2[key_not_common]
     return result
 
 
