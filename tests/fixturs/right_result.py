@@ -9,5 +9,12 @@ file = {
     '+ verbose': True}
 
 
-def right():
+def right_one():
     return generate_diff.mk_str(file)
+
+
+
+
+
+def right_rec():
+   return generate_diff.mk_str(result_rec)
