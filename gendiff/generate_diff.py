@@ -15,7 +15,7 @@ def stulish(result, lvl=2):
     return final
 
 
-def generate_dict(file1, file2):
+def generate_dict(file1, file2,):
     common = list()
     n_common = list()
     for key1 in file1:
@@ -33,7 +33,7 @@ def generate_dict(file1, file2):
 
 def generate(file1, file2, lvl=2):
     result = dict()
-    common, n_common = generate_dict(file1, file2)[0], generate_dict(file1, file2)[1]
+    common, n_common = generate_dict(file1, file2)[1], generate_dict(file1, file2)[2]
     for key_all in common:
         if type(file1[key_all]) is dict and type(file2[key_all]) is dict:
             result[(" " * lvl) + "  " + key_all] = stulish(generate(file1[key_all], file2[key_all], lvl + 4), lvl + 2)
@@ -48,20 +48,17 @@ def generate(file1, file2, lvl=2):
             result[(" " * lvl) + "+ " + key_all] = file2[key_all]
         else:
             result[(" " * lvl) + "  " + key_all] = file1[key_all]
-    timer = 0
-    for file_value in (file1, file2):
-        timer += 1
-        for key in n_common:
-            if key in file_value:
-                if type(file_value[key]) is dict and timer == 1:
-                    result[(" " * lvl) + "- " + key] = stulish(generate(file_value[key], file_value[key], lvl + 4), lvl + 2)
-                elif type(file_value[key]) is dict and timer == 2:
-                    result[(" " * lvl) + "+ " + key] = stulish(generate(file_value[key], file_value[key], lvl + 4), lvl + 2)
-                else:
-                    if timer == 1:
-                        result[(" " * lvl) + "- " + key] = file_value[key]
-                    else:
-                        result[(" " * lvl) + "+ " + key] = file_value[key]
+    for key_nall in n_common:
+        if key_nall in file1:
+            if type(file1[key_nall]) is dict:
+                result[(" " * lvl) + "- " + key_nall] = stulish(generate(file1[key_nall], file1[key_nall], lvl + 4), lvl + 2)
+            else:
+                result[(" " * lvl) + "- " + key_nall] = file1[key_nall]
+        elif key_nall in file2:
+            if type(file2[key_nall]) is dict:
+                result[(" " * lvl) + "+ " + key_nall] = stulish(generate(file2[key_nall], file2[key_nall], lvl + 4), lvl + 2)
+            else:
+                result[(" " * lvl) + "+ " + key_nall] = file2[key_nall]
     return result
 
 
