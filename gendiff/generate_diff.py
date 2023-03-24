@@ -50,15 +50,17 @@ def generate(file1, file2, lvl=2):
             result[(" " * lvl) + "  " + key_all] = file1[key_all]
     for key_nall in n_common:
         if key_nall in file1:
+            new_key1 = (" " * lvl) + "- " + key_nall
             if type(file1[key_nall]) is dict:
-                result[(" " * lvl) + "- " + key_nall] = stulish(generate(file1[key_nall], file1[key_nall], lvl + 4), lvl + 2)
+                result[new_key1] = stulish(generate(file1[key_nall], file1[key_nall], lvl + 4), lvl + 2)
             else:
-                result[(" " * lvl) + "- " + key_nall] = file1[key_nall]
+                result[new_key1] = file1[key_nall]
         elif key_nall in file2:
+            new_key2 = (" " * lvl) + "+ " + key_nall
             if type(file2[key_nall]) is dict:
-                result[(" " * lvl) + "+ " + key_nall] = stulish(generate(file2[key_nall], file2[key_nall], lvl + 4), lvl + 2)
+                result[new_key2] = stulish(generate(file2[key_nall], file2[key_nall], lvl + 4), lvl + 2)
             else:
-                result[(" " * lvl) + "+ " + key_nall] = file2[key_nall]
+                result[new_key2] = file2[key_nall]
     return result
 
 
