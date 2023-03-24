@@ -56,7 +56,6 @@ def generate(file1, file2, lvl=2):
                                                                         file2[key_nall], lvl + 4), lvl + 2)
             else:
                 result[(" " * lvl) + "+ " + key_nall] = file2[key_nall]
-    print(result)
     return result
 
 
