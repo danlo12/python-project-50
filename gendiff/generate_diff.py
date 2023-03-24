@@ -15,7 +15,7 @@ def stulish(result, lvl=2):
     return final
 
 
-def generate_dict(file1, file2,):
+def generate_key_lists(file1, file2,):
     common = list()
     n_common = list()
     for key1 in file1:
@@ -33,7 +33,7 @@ def generate_dict(file1, file2,):
 
 def generate(file1, file2, lvl=2):
     result = dict()
-    common, n_common = generate_dict(file1, file2)[1], generate_dict(file1, file2)[2]
+    common, n_common = generate_key_lists(file1, file2)[0], generate_key_lists(file1, file2)[1]
     for key_all in common:
         if type(file1[key_all]) is dict and type(file2[key_all]) is dict:
             result[(" " * lvl) + "  " + key_all] = stulish(generate(file1[key_all], file2[key_all], lvl + 4), lvl + 2)
