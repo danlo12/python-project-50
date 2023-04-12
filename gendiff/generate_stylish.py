@@ -1,4 +1,3 @@
-from gendiff.parser import definition_form
 
 
 def stulish(result, lvl=2):
@@ -67,8 +66,3 @@ def generate(file1, file2, lvl=2):
     return result
 
 
-def return_result(file_path1, file_path2, formater="stylish"):
-    file1 = definition_form(file_path1)
-    file2 = definition_form(file_path2)
-    if formater == "stylish":
-        return stulish(generate(file1, file2))

@@ -9,4 +9,4 @@ def definition_form(file_path):
         return dict(sorted((yaml.safe_load(open(file_path))).items()))
     else:
         raise ValueError('Unsupported format. '
-                         'Next formats are supported: .json .yaml .yml{}')
+                         'Next formats are supported: .json .yaml .yml')

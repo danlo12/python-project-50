@@ -1,5 +1,5 @@
 from tests.fixturs import right_result
-from gendiff import generate_diff
+from gendiff import generate_stylish
 
 
 def test_gendiff():
