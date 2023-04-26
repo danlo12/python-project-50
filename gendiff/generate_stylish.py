@@ -64,5 +64,3 @@ def generate(file1, file2, lvl=2):
             else:
                 result[new_key2] = file2[key_not_common]
     return result
-
-
