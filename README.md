@@ -11,3 +11,6 @@ Comparison of yaml and yml format files
 
 Example of executing a function with recursion
 <a href="https://asciinema.org/a/Cgt9FMJqJN24VZ10aJ4EoiYzI" target="_blank"><img src="https://asciinema.org/a/Cgt9FMJqJN24VZ10aJ4EoiYzI.svg" /></a>
+
+Work example formatter plain
+<a href="https://asciinema.org/a/rKpPssqJx4OmG2MSQdW5MffJ8" target="_blank"><img src="https://asciinema.org/a/rKpPssqJx4OmG2MSQdW5MffJ8.svg" /></a>
