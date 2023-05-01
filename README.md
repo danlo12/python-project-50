@@ -16,4 +16,4 @@ Work example formatter PLAIN
 <a href="https://asciinema.org/a/rKpPssqJx4OmG2MSQdW5MffJ8" target="_blank"><img src="https://asciinema.org/a/rKpPssqJx4OmG2MSQdW5MffJ8.svg" /></a>
 
 Work example formatter JSON
-<a href="https://asciinema.org/a/iEQ5lhy15SKac6Wr0jMkGH4o7" target="_blank"><img src="https://asciinema.org/a/iEQ5lhy15SKac6Wr0jMkGH4o7.svg" /></a>
+<a href="https://asciinema.org/a/uoFB8262hdRMKDdsSEhk1zJ1N" target="_blank"><img src="https://asciinema.org/a/uoFB8262hdRMKDdsSEhk1zJ1N.svg" /></a>

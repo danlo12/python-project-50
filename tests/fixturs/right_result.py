@@ -12,6 +12,3 @@ file = {
 
 def right_stylish():
     return generate_stylish.stulish(file)
-
-def right_json():
-    return generate_json.json_s(file)
