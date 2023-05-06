@@ -1,5 +1,4 @@
 from gendiff import generate_stylish
-from gendiff import generate_json
 file = {
     "    host": "hexlet.io",
     "  - timeout": "50",
