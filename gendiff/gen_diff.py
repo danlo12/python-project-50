@@ -13,3 +13,5 @@ def generate_diff(file_path1, file_path2, formater="STYLISH"):
         return plain(file1, file2)
     if formater == "JSON":
         return json_s(generate(file1, file2))
+
+__all__ = ["generate_diff"]
