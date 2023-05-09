@@ -1,5 +1,5 @@
-from gendiff import gen_diff
+from gendiff import generate_diff
 
 
 def test_plain():
-    assert gen_diff.generate_diff("tests/fixturs/file2.json", "tests/fixturs/file1.json", "PLAIN") != gen_diff.generate_diff("tests/fixturs/file1.json", "tests/fixturs/file2.json", "PLAIN")
+    assert generate_diff.gen_diff("tests/fixturs/file2.json", "tests/fixturs/file1.json", "PLAIN") != generate_diff.gen_diff("tests/fixturs/file1.json", "tests/fixturs/file2.json", "PLAIN")
