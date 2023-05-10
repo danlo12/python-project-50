@@ -1,4 +1,4 @@
-from gendiff.scripts import gendiff
+from gendiff import gendiff
 import json
 
 

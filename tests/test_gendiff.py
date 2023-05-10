@@ -1,5 +1,5 @@
 from tests.fixturs import right_result
-from gendiff.scripts import gendiff
+from gendiff import gendiff
 
 
 def test_gendiff():
