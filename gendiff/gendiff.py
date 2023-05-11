@@ -8,7 +8,7 @@ def generate_diff(file_path1, file_path2, formater="STYLISH"):
     file1 = definition_form(file_path1)
     file2 = definition_form(file_path2)
     if formater == "STYLISH":
-        return stulish(generate(file1, file2))
+        return str(stulish(generate(file1, file2)))
     if formater == "PLAIN":
         return plain(file1, file2)
     if formater == "JSON":
