@@ -1,7 +1,25 @@
+def sorter(result, slvl):
+    for key in result:
+        if isinstance(result[key], dict):
+            result = result.items()
+            result = sorted(result, key=lambda x: x[0][slvl + 1][-1])
+            result = dict(result)
+            result[key] = sorter(result[key], slvl + 4)
+        else:
+            result = result.items()
+            result = sorted(result, key=lambda x: x[0][slvl + 1][-1])
+            result = dict(result)
+    return result
 
 
-def stulish(result, lvl=2):
+def stulish(result, lvl=0, slvl=4):
     final = "{"
+    for arg in result:
+        if isinstance(result[arg], dict):
+            result = result.items()
+            result = sorted(sorted(result, key=lambda x: x[0][-1]), key=lambda y: y[0][slvl])
+            result = dict(result)
+            result[arg] = stulish(result[arg], lvl + 4, slvl + 4)
     for str_result in result:
         if result[str_result] is True or result[str_result] is False:
             result[str_result] = str(result[str_result]).lower()
@@ -38,13 +56,13 @@ def generate(file1, file2, lvl=2):
         new_key2 = (" " * lvl) + "+ " + key_common
         new_key_all = (" " * lvl) + "  " + key_common
         if type(file1[key_common]) is dict and type(file2[key_common]) is dict:
-            result[new_key_all] = stulish(generate(file1[key_common], file2[key_common], lvl + 4), lvl + 2)
+            result[new_key_all] = generate(file1[key_common], file2[key_common], lvl + 4)
         elif type(file1[key_common]) is dict and type(file2[key_common]) is not dict:
-            result[new_key1] = stulish(generate(file1[key_common], file1[key_common], lvl + 4), lvl + 2)
+            result[new_key1] = generate(file1[key_common], file1[key_common], lvl + 4)
             result[new_key2] = file2[key_common]
         elif type(file1[key_common]) is not dict and type(file2[key_common]) is dict:
             result[new_key1] = file1[key_common]
-            result[new_key2] = stulish(generate(file2[key_common], file2[key_common], lvl + 4), lvl + 2)
+            result[new_key2] = generate(file2[key_common], file2[key_common], lvl + 4)
         elif file1[key_common] != file2[key_common]:
             result[new_key1] = file1[key_common]
             result[new_key2] = file2[key_common]
@@ -54,13 +72,13 @@ def generate(file1, file2, lvl=2):
         if key_not_common in file1:
             new_key1 = (" " * lvl) + "- " + key_not_common
             if type(file1[key_not_common]) is dict:
-                result[new_key1] = stulish(generate(file1[key_not_common], file1[key_not_common], lvl + 4), lvl + 2)
+                result[new_key1] = generate(file1[key_not_common], file1[key_not_common], lvl + 4)
             else:
                 result[new_key1] = file1[key_not_common]
         elif key_not_common in file2:
             new_key2 = (" " * lvl) + "+ " + key_not_common
             if type(file2[key_not_common]) is dict:
-                result[new_key2] = stulish(generate(file2[key_not_common], file2[key_not_common], lvl + 4), lvl + 2)
+                result[new_key2] = generate(file2[key_not_common], file2[key_not_common], lvl + 4)
             else:
                 result[new_key2] = file2[key_not_common]
     return result
