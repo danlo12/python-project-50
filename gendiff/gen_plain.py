@@ -47,29 +47,21 @@ def plain(file1, file2, top_key=""):
                 result.append(plain(file1[key], file2[key], top_key + key + "."))
             else:
                 if type(file1[key]) is dict:
-                    x = str(file2[key])
-                    result.append(f'\nProperty {top_key}{key} was updated. From [complex value] to {x}')
+                    result.append(f"Property '{top_key}{key}' was updated. From [complex value] to '{str(file2[key])}'")
                 elif type(file2[key]) is dict:
-                    result.append(f'\nProperty + {top_key}{key} was updated. From {str(file1[key])} to [complex value]')
+                    result.append(f"Property '{top_key}{key}' was updated. From '{str(file1[key])}' to [complex value]")
                 else:
-                    result.append(f'\nProperty + {top_key} + {key}  was updated. From " + {str(file1[key])} + " to " + {str(file2[key])}')
+                    result.append(f"Property '{top_key}{key}'  was updated. From '{str(file1[key])}' to '{str(file2[key])}'")
         else:
             if type(file2[key]) is dict:
-                result.append(f'\nProperty {top_key}{key} was added with value: [complex value]')
+                result.append(f"Property '{top_key}{key}' was added with value: [complex value]")
             else:
-                result.append(f'\nProperty {top_key}{key} was added with value: {str(file2[key])}')
+                result.append(f"Property '{top_key}{key}' was added with value: '{str(file2[key])}'")
     for key_removed in file1:
         if key_removed not in file2:
-            result.append(f'\nProperty {top_key}{key_removed} was removed')
-    list_string = str()
-    for string in result:
-        list_string += string
-    list_string = list_string.split(sep="\n")
-    list_string.pop(0)
-    sorted_string = sorted(list_string, key=extract_key)
-    result_string = ""
-    for string in sorted_string:
-        result_string += string + "\n"
+            result.append(f"Property '{top_key}{key_removed}' was removed")
+    sorted_result = sorted(result, key=extract_key)
+    result_string = "\n".join(sorted_result)
     return result_string
 
 
