@@ -22,11 +22,11 @@ def find_int(list_r):
     for string in list_r:
         for intr in string:
             if intr.isdigit() is True:
-               index = string.index(intr)
-               if string[index].isdigit() is True:
-                   result.append(string)
-               else:
-                   continue
+                index = string.index(intr)
+                if string[index].isdigit() is True:
+                    result.append(string)
+                else:
+                    continue
         for x in result:
             print(x)
 
