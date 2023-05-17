@@ -6,7 +6,7 @@ file = {
     "  - proxy": "123.234.53.22",
     "  - follow": "false",
     "  + verbose": "true",
-  }
+}
 
 
 def right_stylish():
