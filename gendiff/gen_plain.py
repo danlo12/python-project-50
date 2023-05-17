@@ -48,6 +48,20 @@ def format_value(value):
         return f"'{value}'"
 
 
+def find_int(list_r):
+    result = list()
+    for string in list_r:
+        for intr in string:
+            if intr.isdigit() is True:
+               index = string.index(intr)
+               if string[index].isdigit() is True:
+                   result.append(string)
+               else:
+                   continue
+        for x in result:
+            print(x)
+
+
 def plain(file1, file2, top_key=""):
     result = []
     for key in file2:
@@ -74,16 +88,3 @@ def plain(file1, file2, top_key=""):
     sorted_result = sorted(result, key=extract_key)
     result_string = "\n".join(sorted_result)
     return result_string
-
-def find_int(list_r):
-    result = list()
-    for string in list_r:
-        for intr in string:
-            if intr.isdigit() is True:
-               index = string.index(intr)
-               if string[index].isdigit() is True:
-                   result.append(string)
-               else:
-                   continue
-        for x in result:
-            print(x)
