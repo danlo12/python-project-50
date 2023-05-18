@@ -3,4 +3,4 @@ dist/*
 *.log
 .idea/
 dist/
-__pycache__
+__pycache__/
