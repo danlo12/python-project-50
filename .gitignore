@@ -2,5 +2,5 @@ node_modules/*
 dist/*
 *.log
 .idea/
-.dist/
-__pycache__/
+dist/
+__pycache__
