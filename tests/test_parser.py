@@ -14,7 +14,7 @@ file2 = {
 
 
 def test_pars():
-    assert parser.definition_form('tests/fixturs/file1.json') == file1
-    assert parser.definition_form('tests/fixturs/file1.yaml') == file1
-    assert parser.definition_form('tests/fixturs/file2.json') == file2
-    assert parser.definition_form('tests/fixturs/file2.yml') == file2
+    assert parser.format_definition('tests/fixturs/file1.json') == file1
+    assert parser.format_definition('tests/fixturs/file1.yaml') == file1
+    assert parser.format_definition('tests/fixturs/file2.json') == file2
+    assert parser.format_definition('tests/fixturs/file2.yml') == file2

@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-from gendiff.scripts import cli
+from gendiff import cli
+from gendiff.gendiff import generate_diff
 
 
 def main():
-    print(cli.parse_args())
+    print(generate_diff(cli.parse_args()[0], cli.parse_args()[1], cli.parse_args()[2]))
 
 
 if __name__ == '__main__':

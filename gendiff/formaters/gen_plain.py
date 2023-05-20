@@ -17,43 +17,28 @@ def format_value(value):
         return f"'{value}'"
 
 
-def find_int(list_r):
-    result = list()
-    for string in list_r:
-        for intr in string:
-            if intr.isdigit() is True:
-                index = string.index(intr)
-                if string[index].isdigit() is True:
-                    result.append(string)
-                else:
-                    continue
-        for x in result:
-            print(x)
-
-
-def plain(file1, file2, top_key=""):
-    result = []
-    for key in file2:
-        if key in file1:
-            if file1[key] == file2[key]:
-                continue
-            elif isinstance(file1[key], dict) and isinstance(file2[key], dict):
-                result.append(plain(file1[key], file2[key], top_key + key + "."))
-            else:
-                if isinstance(file1[key], dict):
-                    result.append(f"Property '{top_key}{key}' was updated. From [complex value] to {format_value(file2[key])}")
-                elif isinstance(file2[key], dict):
-                    result.append(f"Property '{top_key}{key}' was updated. From {format_value(file1[key])} to [complex value]")
-                else:
-                    result.append(f"Property '{top_key}{key}' was updated. From {format_value(file1[key])} to {format_value(file2[key])}")
-        else:
-            if isinstance(file2[key], dict):
-                result.append(f"Property '{top_key}{key}' was added with value: [complex value]")
-            else:
-                result.append(f"Property '{top_key}{key}' was added with value: {format_value(file2[key])}")
-    for key_removed in file1:
-        if key_removed not in file2:
-            result.append(f"Property '{top_key}{key_removed}' was removed")
-    sorted_result = sorted(result, key=extract_key)
-    result_string = "\n".join(sorted_result)
-    return result_string
+def plain(result, name=""):
+    output = []
+    for key in sorted(result, key=lambda k: k["name_key"]):
+        if key["type"] == "common_rec":
+            output.append(plain(key["value"], name + key["name_key"] + "."))
+        elif key["type"] == "common":
+            continue
+        elif key["type"] == "updated1":
+            output.append(f"Property '{name}{key['name_key']}' was updated. From [complex value] to {format_value(key['new_value'])}")
+        elif key["type"] == "updated2":
+            output.append(f"Property '{name}{key['name_key']}' was updated. From {format_value(key['old_value'])} to [complex value]")
+        elif key["type"] == "updated3":
+            output.append(f"Property '{name}{key['name_key']}' was updated. From {format_value(key['old_value'])} to {format_value(key['new_value'])}")
+        elif key["type"] == "removed_rec":
+            output.append(f"Property '{name}{key['name_key']}' was removed")
+        elif key["type"] == "removed":
+            output.append(f"Property '{name}{key['name_key']}' was removed")
+        elif key["type"] == "added_rec":
+            output.append(f"Property '{name}{key['name_key']}' was added with value: [complex value]")
+        elif key["type"] == "added":
+            output.append(f"Property '{name}{key['name_key']}' was added with value: {format_value(key['new_value'])}")
+    string_result = ""
+    for string in "\n".join(output):
+        string_result = string_result + string
+    return string_result

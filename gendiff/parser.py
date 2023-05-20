@@ -3,10 +3,16 @@ import yaml
 
 
 def definition_form(file_path):
-    if file_path[-4:] == "json":
-        return dict(((json.load(open(file_path))).items()))
-    elif file_path[-4:] == "yaml" or file_path[-3:] == "yml":
-        return dict(((yaml.safe_load(open(file_path))).items()))
+    extension = file_path[-4:]
+    return (open(file_path)), extension
+
+
+def format_definition(file_path):
+    file, extension = definition_form(file_path)
+    if extension == "json":
+        return dict((json.load(file)).items())
+    elif extension == "yaml" or extension == ".yml":
+        return dict((yaml.safe_load(file)).items())
     else:
         raise ValueError('Unsupported format. '
                          'Next formats are supported: .json .yaml .yml')
