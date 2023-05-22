@@ -30,7 +30,7 @@ def json_f(result, lvl=2):
             output[" " * lvl + "- " + key["name_key"]] = format_value(key["old_value"])
             output[" " * lvl + "+ " + key["name_key"]] = format_value(key["new_value"])
         elif key["type"] == "removed_rec":
-            output[" " * lvl+ "- " + key["name_key"]] = json_f(key["old_value"], lvl + 4)
+            output[" " * lvl + "- " + key["name_key"]] = json_f(key["old_value"], lvl + 4)
         elif key["type"] == "removed":
             output[" " * lvl + "- " + key["name_key"]] = format_value(key["old_value"])
         elif key["type"] == "added_rec":
