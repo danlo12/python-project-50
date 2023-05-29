@@ -1,13 +1,13 @@
 from gendiff import gendiff
 import pytest
-
+import os.path
 
 def find_path(file):
-    file = "tests/fixturs/" + file
-    return file
+    path = "tests/fixturs/"
+    return os.path.join(path,file)
 
 
-@pytest.mark.parametrize("test_input,expected", [("JSON", "json_right_result"), ("PLAIN", "plain_right_result"), ("STYLISH", "stylish_right_result")])
-def test_plain_and_json(test_input, expected):
+@pytest.mark.parametrize("test_input,expected,file1,file2", [("JSON", "json_right_result","file1.json","file2.json"), ("PLAIN", "plain_right_result","file1.json","file2.json"), ("STYLISH", "stylish_right_result","file1.json","file2.json")])
+def test_plain_and_json(test_input, expected,file1,file2):
     expected = open(find_path(expected))
-    assert gendiff.generate_diff("tests/fixturs/file1.json", "tests/fixturs/file2.json", test_input) == expected.read()
+    assert gendiff.generate_diff(find_path(file1), find_path(file2), test_input) == expected.read()
