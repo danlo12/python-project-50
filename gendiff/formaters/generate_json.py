@@ -2,4 +2,6 @@ import json
 
 
 def json_f(result):
-    return json.dumps(result)
+    result = sorted(result, key=lambda x: x["name_key"])
+    result = json.dumps(result)
+    return result

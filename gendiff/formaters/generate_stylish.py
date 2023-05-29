@@ -5,13 +5,13 @@ def format_value(value, lvl):
         return str(value).lower()
     elif isinstance(value, int) or isinstance(value, float):
         return str(value)
-    elif isinstance(value,list):
+    elif isinstance(value, list):
         return walk_and_build_result(value, lvl + 4)
     else:
         return f"{value}"
 
 
-def walk_and_build_result(result,lvl=2):
+def walk_and_build_result(result, lvl=2):
     final = []
     output = []
     for key in sorted(result, key=lambda k: k["name_key"]):
@@ -35,4 +35,3 @@ def walk_and_build_result(result,lvl=2):
 
 def stylish(result):
     return walk_and_build_result(result)
-

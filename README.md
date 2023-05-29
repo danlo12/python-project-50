@@ -3,6 +3,9 @@
 <a href="https://codeclimate.com/github/danlo12/python-project-50/maintainability"><img src="https://api.codeclimate.com/v1/badges/c307a3f31c45499e74fc/maintainability" /></a>
 <a href="https://codeclimate.com/github/danlo12/python-project-50/test_coverage"><img src="https://api.codeclimate.com/v1/badges/c307a3f31c45499e74fc/test_coverage" /></a>
 
+Project description:
+The project implements the function of comparing files and outputting the difference in different formats
+
 Comparison of json format files
 <a href="https://asciinema.org/a/XH8FoqddyQHCJVlYppM7XFyug" target="_blank"><img src="https://asciinema.org/a/XH8FoqddyQHCJVlYppM7XFyug.svg" /></a>
 

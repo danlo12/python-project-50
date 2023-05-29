@@ -13,8 +13,8 @@ def to_str(value):
         return str(value).lower()
     elif isinstance(value, int) or isinstance(value, float):
         return str(value)
-    elif isinstance(value,list):
-        return f"[complex value]"
+    elif isinstance(value, list):
+        return "[complex value]"
     else:
         return f"'{value}'"
 
