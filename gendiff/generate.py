@@ -23,4 +23,5 @@ def generate(file1, file2):
                 result.append({"type": "added_rec", "name_key": key_not_common, "new_value": generate(file2[key_not_common], file2[key_not_common])})
             else:
                 result.append({"type": "added", "name_key": key_not_common, "new_value": file2[key_not_common]})
+    print(result)
     return result
