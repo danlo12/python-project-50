@@ -8,5 +8,4 @@ def parse_args():
     parser.add_argument("second_file")
     f_help = 'set format of output'
     parser.add_argument('-f', '--format', dest='format', help=f_help, default="STYLISH")
-    args = parser.parse_args()
-    return args
+    return parser.parse_args()

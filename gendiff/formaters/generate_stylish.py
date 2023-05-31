@@ -11,10 +11,10 @@ def format_value(value, lvl):
         return f"{value}"
 
 
-def walk_and_build_result(result, lvl=2):
+def walk_and_build_result(content, lvl=2):
     final = []
     output = []
-    for key in sorted(result, key=lambda k: k["name_key"]):
+    for key in sorted(content, key=lambda k: k["name_key"]):
         if key["type"] == "common_rec" or key["type"] == "common":
             output.append(" " * lvl + "  " + key["name_key"] + ": " + format_value(key["value"], lvl))
         elif key["type"] == "updated":
@@ -27,10 +27,8 @@ def walk_and_build_result(result, lvl=2):
         elif key["type"] == "added":
             output.append(" " * lvl + "+ " + key["name_key"] + ": " + format_value(key["new_value"], lvl))
     final.append("{" + "\n" + "\n".join(output) + "\n" + (" " * (lvl - 2)) + "}")
-    string_result = ""
-    for string in "\n".join(final):
-        string_result = string_result + string
-    return string_result
+    result = "\n".join(final)
+    return result
 
 
 def stylish(result):

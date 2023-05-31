@@ -1,9 +1,3 @@
-def extract_key(s):
-    parts = s.split("Property ")
-    if len(parts) > 1:
-        return parts[1]
-    else:
-        return s
 
 
 def to_str(value):
