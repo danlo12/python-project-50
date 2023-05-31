@@ -14,4 +14,4 @@ def format_definition(content, extension):
     if extension == "yaml" or extension == ".yml":
         return dict((yaml.safe_load(content)).items())
     raise ValueError('Unsupported format. '
-                         'Next formats are supported: .json .yaml .yml')
+                     'Next formats are supported: .json .yaml .yml')

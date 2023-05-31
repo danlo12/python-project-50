@@ -4,5 +4,7 @@ test:
 	poetry run pytest
 install:
 	poetry install
+	poetry add flake8
+	poetry add  pytest-cov
 test-cov:
 	poetry run pytest --cov=gendiff --cov-report xml
