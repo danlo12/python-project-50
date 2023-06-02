@@ -15,15 +15,13 @@ def walk_and_build_result(content, lvl=2):
     final = []
     output = []
     for key in sorted(content, key=lambda k: k["name_key"]):
-        if key["type"] == "common_rec" or key["type"] == "common":
+        if key["type"] == "common":
             output.append(" " * lvl + "  " + key["name_key"] + ": " + format_value(key["value"], lvl))
         elif key["type"] == "updated":
             output.append(" " * lvl + "- " + key["name_key"] + ": " + format_value(key["old_value"], lvl))
             output.append(" " * lvl + "+ " + key["name_key"] + ": " + format_value(key["new_value"], lvl))
-        elif key["type"] == "removed_rec" or key["type"] == "removed":
+        elif key["type"] == "removed":
             output.append(" " * lvl + "- " + key["name_key"] + ": " + format_value(key["old_value"], lvl))
-        elif key["type"] == "added_rec" or key["type"] == "added":
-            output.append(" " * lvl + "+ " + key["name_key"] + ": " + format_value(key["new_value"], lvl))
         elif key["type"] == "added":
             output.append(" " * lvl + "+ " + key["name_key"] + ": " + format_value(key["new_value"], lvl))
     final.append("{" + "\n" + "\n".join(output) + "\n" + (" " * (lvl - 2)) + "}")
