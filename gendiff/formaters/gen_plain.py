@@ -17,7 +17,7 @@ def plain(result, name=""):
     output = []
     for key in sorted(result, key=lambda k: k["name_key"]):
         if key["type"] == "common":
-            if isinstance(key["value"],list):
+            if isinstance(key["value"], list):
                 output.append(plain(key["value"], name + key["name_key"] + "."))
             else:
                 continue
