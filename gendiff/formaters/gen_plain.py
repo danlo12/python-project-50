@@ -16,10 +16,11 @@ def to_str(value):
 def plain(result, name=""):
     output = []
     for key in sorted(result, key=lambda k: k["name_key"]):
-        if key["type"] == "common_rec":
-            output.append(plain(key["value"], name + key["name_key"] + "."))
-        elif key["type"] == "common":
-            continue
+        if key["type"] == "common":
+            if isinstance(key["value"],list):
+                output.append(plain(key["value"], name + key["name_key"] + "."))
+            else:
+                continue
         elif key["type"] == "updated":
             output.append(f"Property '{name}{key['name_key']}' was updated. From {to_str(key['old_value'])} to {to_str(key['new_value'])}")
         elif key["type"] == "removed" or key["type"] == "removed_rec":
