@@ -5,7 +5,7 @@ TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
 FIXTURES_PATH = f"{TESTS_DIR}/fixtures"
 
 
-def build_fixture_path(file,path=FIXTURES_PATH):
+def build_fixture_path(file, path=FIXTURES_PATH):
     print(path)
     return os.path.join(path, file)
 
