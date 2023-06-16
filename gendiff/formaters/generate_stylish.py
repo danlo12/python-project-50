@@ -15,19 +15,22 @@ def walk_and_build_result(content, lvl=2):
     final = []
     output = []
     for key in sorted(content, key=lambda k: k["name_key"]):
-        if key["type"] == "common":
-            output.append(" " * lvl + "  " + key["name_key"] + ": " + format_value(key["value"], lvl))
+        not_updated = " " * lvl + "  " + key["name_key"] + ": "
+        added = " " * lvl + "+ " + key["name_key"] + ": "
+        removed = " " * lvl + "- " + key["name_key"] + ": "
+        if key["type"] == "not updated":
+            output.append(not_updated + format_value(key["value"], lvl))
         elif key["type"] == "updated":
-            output.append(" " * lvl + "- " + key["name_key"] + ": " + format_value(key["old_value"], lvl))
-            output.append(" " * lvl + "+ " + key["name_key"] + ": " + format_value(key["new_value"], lvl))
+            output.append(removed + format_value(key["old_value"], lvl))
+            output.append(added + format_value(key["new_value"], lvl))
         elif key["type"] == "removed":
-            output.append(" " * lvl + "- " + key["name_key"] + ": " + format_value(key["old_value"], lvl))
+            output.append(removed + format_value(key["old_value"], lvl))
         elif key["type"] == "added":
-            output.append(" " * lvl + "+ " + key["name_key"] + ": " + format_value(key["new_value"], lvl))
+            output.append(added + format_value(key["new_value"], lvl))
     final.append("{" + "\n" + "\n".join(output) + "\n" + (" " * (lvl - 2)) + "}")
     result = "\n".join(final)
     return result
 
 
-def stylish(result):
-    return walk_and_build_result(result)
+def stylish(content):
+    return walk_and_build_result(content)

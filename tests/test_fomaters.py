@@ -6,7 +6,6 @@ FIXTURES_PATH = f"{TESTS_DIR}/fixtures"
 
 
 def build_fixture_path(file, path=FIXTURES_PATH):
-    print(path)
     return os.path.join(path, file)
 
 
@@ -14,4 +13,5 @@ def build_fixture_path(file, path=FIXTURES_PATH):
 def test_plain_and_json(test_input, expected, file1, file2):
     with open(build_fixture_path(expected)) as expected_file:
         expected_content = expected_file.read()
+        print(expected_content)
         assert gendiff.generate_diff(build_fixture_path(file1), build_fixture_path(file2), test_input) == expected_content
