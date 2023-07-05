@@ -5,8 +5,9 @@ import os
 
 def load_and_parse_formatter(file_path):
     extension = os.path.splitext(file_path)[1]
-    content = open(file_path)
-    return parse_formatter(content, extension)
+    with open(file_path) as file:
+        content = file.read()
+        return parse_formatter(content, extension)
 
 
 def parse_formatter(content, extension):
