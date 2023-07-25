@@ -38,7 +38,7 @@ def build_dicts_diff(content1, content2):
                                "old_value": build_dicts_diff(content1[key],
                                                              content1[key])})
                 continue
-            if isinstance(content1[key], dict):
+            if isinstance(content2[key], dict):
                 result.append({"type": "updated", "name_key": key,
                                "new_value": build_dicts_diff(content2[key],
                                                              content2[key]),
