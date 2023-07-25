@@ -5,8 +5,8 @@ import os
 
 def get_content(file_path):
     extension = os.path.splitext(file_path)
-    content = open(file_path)
-    return parse_formatter(content, extension[1])
+    with open(file_path) as content:
+        return parse_formatter(content, extension[1])
 
 
 def parse_formatter(content, extension):
