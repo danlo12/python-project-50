@@ -3,17 +3,16 @@ import yaml
 import os
 
 
-def load_and_parse_formatter(file_path):
-    extension = os.path.splitext(file_path)[1]
-    with open(file_path) as file:
-        content = file.read()
-        return parse_formatter(content, extension)
+def get_content(file_path):
+    extension = os.path.splitext(file_path)
+    content = open(file_path)
+    return parse_formatter(content, extension[1])
 
 
 def parse_formatter(content, extension):
     if extension == ".json":
-        return dict((json.load(content)).items())
+        return json.load(content)
     if extension == ".yaml" or extension == ".yml":
-        return dict((yaml.safe_load(content)).items())
+        return yaml.safe_load(content)
     raise ValueError('Unsupported format. '
                      'Next formats are supported: .json .yaml .yml')

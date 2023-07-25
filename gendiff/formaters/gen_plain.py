@@ -21,9 +21,12 @@ def plain(content, name=""):
             else:
                 continue
         elif key["type"] == "updated":
-            output.append(f"Property '{name}{key['name_key']}' was updated. From {to_str(key['old_value'])} to {to_str(key['new_value'])}")
-        elif key["type"] == "removed" or key["type"] == "removed_rec":
+            output.append(f"Property '{name}{key['name_key']}"
+                          f"' was updated. From {to_str(key['old_value'])} "
+                          f"to {to_str(key['new_value'])}")
+        elif key["type"] == "removed":
             output.append(f"Property '{name}{key['name_key']}' was removed")
-        elif key["type"] == "added" or key["type"] == "added_rec":
-            output.append(f"Property '{name}{key['name_key']}' was added with value: {to_str(key['new_value'])}")
+        elif key["type"] == "added":
+            output.append(f"Property '{name}{key['name_key']}' "
+                          f"was added with value: {to_str(key['new_value'])}")
     return "\n".join(output)
