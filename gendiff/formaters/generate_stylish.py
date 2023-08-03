@@ -14,7 +14,7 @@ def walk_and_build_result(content, lvl=2):
     final = []
     output = []
     for key in content:
-        if key["type"] == "not updated":
+        if key["type"] == "not updated" or key["type"] == "nested":
             not_updated = " " * lvl + "  " + key["name_key"] + ": "
             output.append(not_updated + format_value(key["value"], lvl))
         elif key["type"] == "updated":

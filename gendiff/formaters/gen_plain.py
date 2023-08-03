@@ -13,10 +13,9 @@ def to_str(value):
 
 
 def operation_for_plain(name, key):
-    if key["type"] == "not updated":
-        if isinstance(key["value"], list):
-            return (plain(key
-                          ["value"], name + key["name_key"] + "."))
+    if key["type"] == "nested":
+        return (plain(key["value"],
+                      name + key["name_key"] + "."))
 
     elif key["type"] == "updated":
         return (f"Property '{name}{key['name_key']}"

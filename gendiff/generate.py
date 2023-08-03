@@ -17,7 +17,7 @@ def operation_for_delete(content, key):
 def operation_for_modified(content1, content2, key):
     if isinstance(content1[key], dict) and \
             isinstance(content2[key], dict):
-        return ({"type": "not updated", "name_key": key,
+        return ({"type": "nested", "name_key": key,
                  "value": build_dicts_diff(content1[key], content2[key])})
     if isinstance(content1[key], dict):
         return ({"type": "updated", "name_key": key,
