@@ -1,5 +1,5 @@
 from gendiff import gendiff
-from gendiff import build_fixture_path
+from tests import build_fixture_path
 import pytest
 
 
