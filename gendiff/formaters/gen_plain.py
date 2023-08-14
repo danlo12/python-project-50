@@ -12,7 +12,7 @@ def to_str(value):
     return f"'{value}'"
 
 
-def operation_for_plain(name, key):
+def build_line(name, key):
     if key["type"] == "nested":
         return (plain(key
                       ["value"], name + key["name_key"] + "."))
@@ -29,12 +29,12 @@ def operation_for_plain(name, key):
                 f"was added with value: {to_str(key['new_value'])}")
 
 
-def plain(content, name=""):
+def plain(content, prefix_path=""):
     output = []
     for key in content:
-        result = operation_for_plain(name, key)
+        result = build_line(prefix_path, key)
         if result is not None:
-            output.append(operation_for_plain(name, key))
+            output.append(build_line(prefix_path, key))
         else:
             continue
     return "\n".join(output)

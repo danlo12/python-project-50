@@ -10,6 +10,5 @@ import pytest
 def test_plain_and_json(custom_format, expected, file1, file2):
     with open(build_fixture_path(expected)) as expected_file:
         expected_content = expected_file.read()
-        print(expected_content)
         assert gendiff.generate_diff(build_fixture_path(file1),
                                      build_fixture_path(file2), custom_format) == expected_content
